@@ -26,3 +26,16 @@ services:
       - alfa
       ports:
         - "8080:80"
+  
+  db:
+      image: mysql
+      command: --default-authentication-plugin=mysql_native_password
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: example
+
+  adminer:
+      image: adminer
+      restart: always
+      ports:
+        - 8081:8080
