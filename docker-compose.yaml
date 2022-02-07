@@ -1,10 +1,12 @@
-version: '3'
+version: '3.8'
 services:
   beta:
     container_name: beta
     build:
       context: ./alfa
       dockerfile: Dockerfile
+    depends_on:
+          - db
     ports:
       - "5001:80"
     volumes:
@@ -14,6 +16,8 @@ services:
     build:
       context: ./alfa
       dockerfile: Dockerfile
+    depends_on:
+          - db
     ports:
       - "5002:80"
     volumes:
@@ -27,15 +31,15 @@ services:
       ports:
         - "8080:80"
   
+  
   db:
+      container_name: db
       image: mysql
-      command: --default-authentication-plugin=mysql_native_password
       restart: always
       environment:
-        MYSQL_ROOT_PASSWORD: example
-
-  adminer:
-      image: adminer
-      restart: always
+          MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+          MYSQL_DATABASE: MYSQL_DATABASE
+          MYSQL_USER: MYSQL_USER
+          MYSQL_PASSWORD: MYSQL_PASSWORD
       ports:
-        - 8081:8080
+          - "9906:3306"
