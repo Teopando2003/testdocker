@@ -1,5 +1,14 @@
 version: '3.8'
 services:
+  db:
+    container_name: db
+    image: mysql
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+        MYSQL_DATABASE: MYSQL_DATABASE
+        MYSQL_USER: MYSQL_USER
+        MYSQL_PASSWORD: MYSQL_PASSWORD
   beta:
     container_name: beta
     build:
@@ -30,14 +39,3 @@ services:
       - alfa
       ports:
         - "8080:80"
-  
-  
-  db:
-      container_name: db
-      image: mysql
-      restart: always
-      environment:
-          MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
-          MYSQL_DATABASE: MYSQL_DATABASE
-          MYSQL_USER: MYSQL_USER
-          MYSQL_PASSWORD: MYSQL_PASSWORD
