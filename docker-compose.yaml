@@ -12,7 +12,7 @@ services:
   beta:
     container_name: beta
     build:
-      context: ./alfa
+      context: ./
       dockerfile: Dockerfile
     depends_on:
           - db
@@ -23,7 +23,7 @@ services:
   alfa:
     container_name: alfa
     build:
-      context: ./alfa
+      context: ./
       dockerfile: Dockerfile
     depends_on:
           - db
